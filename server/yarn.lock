@@ -1120,10 +1120,10 @@
   dependencies:
     "@prisma/engines-version" "4.6.1-3.694eea289a8462c80264df36757e4fdc129b1b32"
 
-"@prisma/debug@4.6.1":
-  version "4.6.1"
-  resolved "https://registry.yarnpkg.com/@prisma/debug/-/debug-4.6.1.tgz#be1c359f4e12d7eade19232a04ea2e5f322dd8bb"
-  integrity sha512-BezDvSenTgQDQ6WA3TdTDGcrt0Oh4vmpZtmSOYm1KaSZiSVIL2xT0P9TFM3vtOa4wn7sn/003PyTSxyHS3mShg==
+"@prisma/debug@4.8.1":
+  version "4.8.1"
+  resolved "https://registry.yarnpkg.com/@prisma/debug/-/debug-4.8.1.tgz#b3aaaeb996fe06d83b91b80ab2c1231166e4c0a7"
+  integrity sha512-BcShw74uZWWuuDPRpvIj8lqF6ywfcaeTqJF6VTiMd3VXxiB+c0F/mCshnYqoURoEaDmwwrBubWjBgmoWBHoPLQ==
   dependencies:
     "@types/debug" "4.1.7"
     debug "4.3.4"
@@ -1139,12 +1139,12 @@
   resolved "https://registry.yarnpkg.com/@prisma/engines/-/engines-4.6.1.tgz#ae31309cc0f600f2da22708697b3be4eb1e46f9e"
   integrity sha512-3u2/XxvxB+Q7cMXHnKU0CpBiUK1QWqpgiBv28YDo1zOIJE3FCF8DI2vrp6vuwjGt5h0JGXDSvmSf4D4maVjJdw==
 
-"@prisma/generator-helper@^4.1.0":
-  version "4.6.1"
-  resolved "https://registry.yarnpkg.com/@prisma/generator-helper/-/generator-helper-4.6.1.tgz#cb5248ff7ebf8722c311f26843b314e031e089a7"
-  integrity sha512-70XBmqDhmpe8H35ttOJOgyg1OpppO/uelILB1SIwjeSI7PHHdU2+Y/+LkpnifkCEpSZKIhxEIPbHx17m2neAsA==
+"@prisma/generator-helper@^4.7.1":
+  version "4.8.1"
+  resolved "https://registry.yarnpkg.com/@prisma/generator-helper/-/generator-helper-4.8.1.tgz#3ef556ed92bbd3c9690bbed127345d15a8f0bdf9"
+  integrity sha512-3JAj4syF2LcojH2fFaW05dLJZrxc0fygoXMFGS+XwA7NHFgUNTBpkvGXlgLUmPH/0uSD8HM7H+ggYgfImc3xTA==
   dependencies:
-    "@prisma/debug" "4.6.1"
+    "@prisma/debug" "4.8.1"
     "@types/cross-spawn" "6.0.2"
     chalk "4.1.2"
     cross-spawn "7.0.3"
@@ -4544,12 +4544,12 @@ prisma-graphql-type-decimal@^2.0.4:
   resolved "https://registry.yarnpkg.com/prisma-graphql-type-decimal/-/prisma-graphql-type-decimal-2.0.4.tgz#be33afd57b234b55bce438fe736c894365bc2aea"
   integrity sha512-HjqDYqpBF8T6XztkYVemcEit+XywoygQPUvM7Cowvd9ExkUz8ofZaTlIkY0Rw7kVOdz4btZhMsj/v/6Bitnn0w==
 
-prisma-nestjs-graphql@^17.0.2:
-  version "17.0.2"
-  resolved "https://registry.yarnpkg.com/prisma-nestjs-graphql/-/prisma-nestjs-graphql-17.0.2.tgz#ca61c27d9b052557c83b5c2b47ad669915bc8413"
-  integrity sha512-AGRo1KwXdsCaMGBzqAMEIYQtW9iQuROyw8cXMjI8LT+GS2IjOLVSSi4odgcNRUZFdpSlgwuh7OJgBtmQ5fS9Gw==
+prisma-nestjs-graphql@^17.1.0:
+  version "17.1.0"
+  resolved "https://registry.yarnpkg.com/prisma-nestjs-graphql/-/prisma-nestjs-graphql-17.1.0.tgz#69f14b2af202757e53fba5ae0ae13b5e7cdf44d5"
+  integrity sha512-TrkOjb4wAPZ7OBej0EyB2ZsinjYTwWR5sD8RMk27xSm7i7K8exjLOTkVZaLYrncV6lzcq82Rocdlie3RpgQVZQ==
   dependencies:
-    "@prisma/generator-helper" "^4.1.0"
+    "@prisma/generator-helper" "^4.7.1"
     await-event-emitter "^2.0.2"
     filenamify "4.X"
     flat "^5.0.2"
