@@ -26,25 +26,55 @@ datasource db {
 }
 
 model User {
+  /// Идентификатор пользователя
   id        Int     @id @default(autoincrement())
   /// Логин пользователя
   /// @Validator.MinLength(3)
   /// @Validator.MaxLength(30)
-  username  String  @unique @db.VarChar(30)
+  username  String  @unique @db.VarChar(50)
   /// @HideField()
   password  String  @db.VarChar(256)
+  // Аватар пользователя
+  avatar    String?
+  /// Email пользователя
   /// @Validator.IsEmail()
-  email     String  @unique @db.VarChar(30)
+  email     String  @unique @db.VarChar(50)
+  /// Фамилия
   /// @Validator.MinLength(3)
-  /// @Validator.MaxLength(30)
-  lastName  String  @db.VarChar(30)
+  /// @Validator.MaxLength(50)
+  lastName  String  @db.VarChar(50) @map("last_name")
+  /// Имя
   /// @Validator.MinLength(3)
-  /// @Validator.MaxLength(30)
-  firstName String  @db.VarChar(30)
-  /// @Validator.MaxLength(30)
-  sirName   String? @db.VarChar(30)
+  /// @Validator.MaxLength(50)
+  firstName String  @db.VarChar(50) @map("first_name")
+  /// Отчество
+  /// @Validator.MaxLength(50)
+  sirName   String? @db.VarChar(50) @map("sir_name")
+  /// День рожденья
+  /// @Validator.IsDate()
+  birthday  DateTime?
+  /// Роль пользователя
+  role Role @default(USER)
+  /// Пол пользователя
+  gender Gender @default(UNKNOWN)
 
-  createdAt DateTime @default(now())
+
+  /// Дата регистрации пользователя
+  createdAt DateTime @default(now()) @map("created_at")
+  /// Дата обновления
+  updatedAt DateTime @default(now()) @updatedAt @map("updated_at")
 
   @@index([username, email])
+  @@map("users")
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+enum Gender {
+  UNKNOWN
+  MALE
+  FEMALE
 }

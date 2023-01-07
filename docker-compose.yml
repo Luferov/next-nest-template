@@ -4,19 +4,19 @@ version: '3.9'
 services:
   postgres:
     container_name: postgres-template
-    image: postgres:latest
+    image: postgres:13.9
     restart: unless-stopped
     environment:
       POSTGRES_DB: template
       POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: root # 1234
+      POSTGRES_PASSWORD: 1234
     ports:
       - "5432:5432"
     volumes:
       - './server/db/postgres/data:/var/lib/postgresql/data'
 
   pgadmin:
-    container_name: pgadmin-aiops
+    container_name: pgadmin-template
     image: dpage/pgadmin4
     environment:
       PGADMIN_DEFAULT_EMAIL: pgadmin4@pgadmin.org

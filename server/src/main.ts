@@ -1,19 +1,21 @@
 import { NestFactory } from '@nestjs/core'
-import {
-	FastifyAdapter,
-	NestFastifyApplication,
-} from '@nestjs/platform-fastify'
+import { ValidationPipe } from '@nestjs/common'
 import { AppModule } from './app.module'
-import { PrismaService } from './services/prisma/prisma.service'
+import { PrismaService } from './common/services/prisma.service'
 
 async function bootstrap() {
-	const app = await NestFactory.create<NestFastifyApplication>(
-		AppModule,
-		new FastifyAdapter({ logger: true }),
-	)
+	const app = await NestFactory.create(AppModule)
 	const prismaService = app.get(PrismaService)
 	await prismaService.enableShutdownHooks(app)
 
+	app.useGlobalPipes(
+		new ValidationPipe({
+			transform: true,
+			whitelist: true,
+			forbidNonWhitelisted: true,
+		})
+	)
+
 	await app.listen(8000)
 }
-bootstrap()
+bootstrap().then(console.log)
