@@ -1,0 +1,50 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+generator nestgraphql {
+  provider = "node node_modules/prisma-nestjs-graphql"
+  output   = "../src/@generated"
+  reExport = Directories
+
+  fields_Validator_from  = "class-validator"
+  fields_Validator_input = true
+
+  decorate_1_type      = "@(Create|Update)@(One|Many)UserArgs"
+  decorate_1_field     = data
+  decorate_1_name      = ValidateNested
+  decorate_1_from      = "class-validator"
+  decorate_1_arguments = "[]"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        Int     @id @default(autoincrement())
+  /// Логин пользователя
+  /// @Validator.MinLength(3)
+  /// @Validator.MaxLength(30)
+  username  String  @unique @db.VarChar(30)
+  /// @HideField()
+  password  String  @db.VarChar(256)
+  /// @Validator.IsEmail()
+  email     String  @unique @db.VarChar(30)
+  /// @Validator.MinLength(3)
+  /// @Validator.MaxLength(30)
+  lastName  String  @db.VarChar(30)
+  /// @Validator.MinLength(3)
+  /// @Validator.MaxLength(30)
+  firstName String  @db.VarChar(30)
+  /// @Validator.MaxLength(30)
+  sirName   String? @db.VarChar(30)
+
+  createdAt DateTime @default(now())
+
+  @@index([username, email])
+}
