@@ -50,6 +50,8 @@ model User {
   /// Отчество
   /// @Validator.MaxLength(50)
   sirName   String? @db.VarChar(50) @map("sir_name")
+  /// Флаг активности пользователя
+  active   Boolean   @default(true)
   /// День рожденья
   /// @Validator.IsDate()
   birthday  DateTime?

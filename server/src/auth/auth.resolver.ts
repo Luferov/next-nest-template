@@ -1,23 +1,22 @@
-import { Info, Query, Resolver } from '@nestjs/graphql'
-import { User } from '@generated/user'
-import { GraphQLResolveInfo } from 'graphql'
-import { PrismaService } from '../common/services/prisma.service'
+import { Args, Mutation, Query, Resolver } from '@nestjs/graphql'
+import { UseGuards } from '@nestjs/common'
+import { CreateOneUserArgs, User } from '@generated/user'
+import { AuthService } from './auth.service'
+import { GqlAuthGuard } from './auth.guard'
+import { CurrentUser } from './auth.decorators'
 
 @Resolver(() => User)
 export class AuthResolver {
-	constructor(private prisma: PrismaService) {}
+	constructor(private readonly authService: AuthService) {}
 
 	@Query(() => User)
-	async me(@Info() info: GraphQLResolveInfo): Promise<User> {
-		return {
-			id: 1,
-			email: 'lyferov@yandex.ru',
-			username: 'luferov',
-			firstName: 'Луферов',
-			lastName: 'Victor',
-			sirName: 'Sergeevich',
-			role: 'USER',
-			gender: 'MALE',
-		} as unknown as User
+	@UseGuards(GqlAuthGuard)
+	async me(@CurrentUser() user: User): Promise<User> {
+		return user
+	}
+
+	@Mutation(() => User, { nullable: true })
+	async register(@Args() userArgs: CreateOneUserArgs): Promise<any> {
+		return await this.authService.createUser(userArgs.data)
 	}
 }

@@ -1,10 +1,12 @@
 import { NestFactory } from '@nestjs/core'
-import { ValidationPipe } from '@nestjs/common'
+import { Logger, ValidationPipe } from '@nestjs/common'
+import helmet from 'helmet'
 import { AppModule } from './app.module'
 import { PrismaService } from './common/services/prisma.service'
 
 async function bootstrap() {
-	const app = await NestFactory.create(AppModule)
+	const app = await NestFactory.create(AppModule, { logger: new Logger() })
+	app.use(helmet())
 	const prismaService = app.get(PrismaService)
 	await prismaService.enableShutdownHooks(app)
 
@@ -16,6 +18,10 @@ async function bootstrap() {
 		})
 	)
 
-	await app.listen(8000)
+	const port = process.env.PORT || 8000
+
+	await app.listen(port)
+
+	Logger.log(`🚀 Application is running on: http://localhost:${port}/`)
 }
-bootstrap().then(console.log)
+bootstrap()
