@@ -2,8 +2,8 @@ import { Field } from '@nestjs/graphql'
 import { ObjectType } from '@nestjs/graphql'
 import { ID } from '@nestjs/graphql'
 import { HideField } from '@nestjs/graphql'
-import { Role } from '../prisma/role.enum'
-import { Gender } from '../prisma/gender.enum'
+import { Role } from '@generated/prisma'
+import { Gender } from '@generated/prisma'
 
 @ObjectType()
 export class User {

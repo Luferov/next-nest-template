@@ -4,7 +4,6 @@ import { MiddlewareConsumer, Module } from '@nestjs/common'
 import { AppController } from './app.controller'
 import { AppService } from './app.service'
 import { ConfigModule } from '@nestjs/config'
-import { AuthController } from './auth/auth.controller'
 import { AuthModule } from './auth/auth.module'
 import { PrismaService } from './common/services/prisma.service'
 import { GraphQLModule } from '@nestjs/graphql'
@@ -21,7 +20,7 @@ import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo'
 		}),
 		AuthModule,
 	],
-	controllers: [AppController, AuthController],
+	controllers: [AppController],
 	providers: [AppService, PrismaService],
 })
 export class AppModule {

@@ -1,9 +1,10 @@
 import { Args, Mutation, Query, Resolver } from '@nestjs/graphql'
 import { UseGuards } from '@nestjs/common'
-import { CreateOneUserArgs, User } from '@generated/user'
+import { User } from '@generated/user'
 import { AuthService } from './auth.service'
 import { GqlAuthGuard } from './auth.guard'
 import { CurrentUser } from './auth.decorators'
+import { UserLoginInput, UserLoginType, UserRegisterInput } from './dto'
 
 @Resolver(() => User)
 export class AuthResolver {
@@ -15,8 +16,18 @@ export class AuthResolver {
 		return user
 	}
 
-	@Mutation(() => User, { nullable: true })
-	async register(@Args() userArgs: CreateOneUserArgs): Promise<any> {
-		return await this.authService.createUser(userArgs.data)
+	@Mutation(() => UserLoginType)
+	async login(
+		@Args('userLoginInput') userLoginInput: UserLoginInput
+	): Promise<UserLoginType> {
+		return await this.authService.login(userLoginInput)
+	}
+
+	@Mutation(() => UserLoginType, { nullable: true })
+	async register(
+		@Args('userRegisterInput') userRegisterInput: UserRegisterInput
+	): Promise<UserLoginType> {
+		console.log(userRegisterInput)
+		return await this.authService.register(userRegisterInput)
 	}
 }

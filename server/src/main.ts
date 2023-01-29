@@ -1,12 +1,11 @@
 import { NestFactory } from '@nestjs/core'
 import { Logger, ValidationPipe } from '@nestjs/common'
-import helmet from 'helmet'
+// import helmet from 'helmet'
 import { AppModule } from './app.module'
 import { PrismaService } from './common/services/prisma.service'
 
 async function bootstrap() {
 	const app = await NestFactory.create(AppModule, { logger: new Logger() })
-	app.use(helmet())
 	const prismaService = app.get(PrismaService)
 	await prismaService.enableShutdownHooks(app)
 

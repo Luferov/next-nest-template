@@ -114,26 +114,33 @@ type User {
   updatedAt: DateTime!
 }
 
+type UserLoginType {
+  accessToken: String!
+  user: User!
+}
+
 type Query {
   me: User!
 }
 
 type Mutation {
-  register(data: UserCreateInput!): User
+  login(userLoginInput: UserLoginInput!): UserLoginType!
+  register(userRegisterInput: UserRegisterInput!): UserLoginType
 }
 
-input UserCreateInput {
+input UserLoginInput {
   username: String!
   password: String!
-  avatar: String
+}
+
+input UserRegisterInput {
+  username: String!
+  password: String!
   email: String!
   lastName: String!
   firstName: String!
   sirName: String
-  active: Boolean
+
+  """Date of birthday """
   birthday: DateTime
-  role: Role
-  gender: Gender
-  createdAt: DateTime
-  updatedAt: DateTime
 }
