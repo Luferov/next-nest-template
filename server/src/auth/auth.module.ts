@@ -36,6 +36,7 @@ import { PrismaService } from '@common/services/prisma.service'
 		AuthService,
 		AuthResolver,
 		JwtStrategy,
+		LocalStrategy,
 	],
 	exports: [AuthService],
 })
