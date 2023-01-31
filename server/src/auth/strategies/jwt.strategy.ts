@@ -3,7 +3,7 @@ import { Injectable } from '@nestjs/common'
 import { PassportStrategy } from '@nestjs/passport'
 import { ConfigService } from '@nestjs/config'
 import { User } from '@generated/user'
-import { UserService } from '../user.service'
+import { UsersService } from '@users/users.service'
 
 export interface JwtPayload {
 	username: string
@@ -11,9 +11,9 @@ export interface JwtPayload {
 }
 
 @Injectable()
-export class JwtStrategy extends PassportStrategy(Strategy, 'jwt') {
+export class JwtStrategy extends PassportStrategy(Strategy) {
 	constructor(
-		private readonly userService: UserService,
+		private readonly usersService: UsersService,
 		private readonly config: ConfigService
 	) {
 		super({
@@ -24,6 +24,7 @@ export class JwtStrategy extends PassportStrategy(Strategy, 'jwt') {
 	}
 
 	async validate({ username }: JwtPayload): Promise<User> {
-		return await this.userService.findOne(username)
+		console.log(username)
+		return await this.usersService.findOne(username)
 	}
 }

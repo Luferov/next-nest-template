@@ -1,13 +1,14 @@
 import { join } from 'node:path'
 import { MiddlewareConsumer, Module } from '@nestjs/common'
+import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo'
+import { GraphQLModule } from '@nestjs/graphql'
+import { ConfigModule } from '@nestjs/config'
 
+import { AuthModule } from '@auth/auth.module'
+import { PrismaService } from '@common/services/prisma.service'
+import { UsersModule } from '@users/users.module'
 import { AppController } from './app.controller'
 import { AppService } from './app.service'
-import { ConfigModule } from '@nestjs/config'
-import { AuthModule } from './auth/auth.module'
-import { PrismaService } from './common/services/prisma.service'
-import { GraphQLModule } from '@nestjs/graphql'
-import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo'
 
 @Module({
 	imports: [
@@ -19,6 +20,7 @@ import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo'
 			playground: true,
 		}),
 		AuthModule,
+		UsersModule,
 	],
 	controllers: [AppController],
 	providers: [AppService, PrismaService],

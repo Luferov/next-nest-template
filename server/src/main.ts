@@ -2,7 +2,7 @@ import { NestFactory } from '@nestjs/core'
 import { Logger, ValidationPipe } from '@nestjs/common'
 // import helmet from 'helmet'
 import { AppModule } from './app.module'
-import { PrismaService } from './common/services/prisma.service'
+import { PrismaService } from '@common/services/prisma.service'
 
 async function bootstrap() {
 	const app = await NestFactory.create(AppModule, { logger: new Logger() })
@@ -12,8 +12,7 @@ async function bootstrap() {
 	app.useGlobalPipes(
 		new ValidationPipe({
 			transform: true,
-			whitelist: true,
-			forbidNonWhitelisted: true,
+			disableErrorMessages: true,
 		})
 	)
 

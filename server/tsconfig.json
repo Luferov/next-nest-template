@@ -18,7 +18,10 @@
     "forceConsistentCasingInFileNames": false,
     "noFallthroughCasesInSwitch": false,
     "paths": {
-      "@generated/*": ["src/@generated/*"]
+      "@generated/*": ["src/@generated/*"],
+      "@common/*": ["src/common/*"],
+      "@auth/*": ["src/auth/*"],
+      "@users/*": ["src/users/*"]
     }
   }
 }

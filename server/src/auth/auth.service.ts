@@ -7,12 +7,14 @@ import { User } from '@generated/user'
 import type { Bcrypt, Passport } from './providers'
 import { PASSPORT, BCRYPT } from './providers'
 import { JwtPayload } from './strategies'
+import { ConfigService } from '@nestjs/config'
 
 @Injectable()
 export class AuthService {
 	constructor(
 		private readonly prismaService: PrismaService,
 		private readonly jwtService: JwtService,
+		private readonly configService: ConfigService,
 		@Inject(BCRYPT) private readonly bcryptService: Bcrypt,
 		@Inject(PASSPORT) private readonly passportService: Passport
 	) {}
