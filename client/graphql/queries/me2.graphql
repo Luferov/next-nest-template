@@ -1,0 +1,6 @@
+query Me2 {
+  me {
+    username
+    __typename
+  }
+}
