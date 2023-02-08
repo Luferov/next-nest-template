@@ -22,7 +22,7 @@
     "generate": "prisma generate && eslint \"src/@generated/**/*.ts\" --fix"
   },
   "dependencies": {
-    "@nestjs/apollo": "^10.1.6",
+    "@nestjs/apollo": "^10.2.0",
     "@nestjs/common": "^9.0.0",
     "@nestjs/config": "^2.2.0",
     "@nestjs/core": "^9.0.0",
